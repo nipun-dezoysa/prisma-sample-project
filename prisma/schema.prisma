@@ -18,9 +18,11 @@ model User {
   name           String
   age            Int
   email          String          @unique
+  role           Role            @default(USER)
   writtenPosts   Post[]          @relation("writtenPosts")
   favoritePosts  Post[]          @relation("favoritePosts")
   userPreference UserPreference?
+
   @@unique([name, age])
   @@index([email])
 }
@@ -49,4 +51,10 @@ model Category {
   id    String @id @default(uuid())
   name  String @unique
   posts Post[]
+}
+
+enum Role {
+  USER
+  EDITOR
+  ADMIN
 }

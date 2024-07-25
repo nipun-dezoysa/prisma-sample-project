@@ -3,7 +3,7 @@ const prisma = new PrismaClient();
 
 async function main() {
     // const user = await prisma.user.create({data: {name: "Nipun"}});
-    const all  = await prisma.user.findMany();
+    const all  = await prisma.user.deleteMany();
     console.log(all); 
 }
 
