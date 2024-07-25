@@ -18,6 +18,8 @@ async function main() {
   //   },
   // });
 
+  await prisma.user.update({where:{email:""},data:{email:"test1@gmail.com"}});
+
   const all = await prisma.user.findMany({
     where: {  age: { gt: 10 } }, //gt, gte, lt, lte, in, notIn, equals, not, contains, startsWith, endsWith
     //where:{OR:[{age: {gt: 10}},{name: {contains: "Nipun"}}]}, //AND, OR, NOT
