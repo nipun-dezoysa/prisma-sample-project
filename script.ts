@@ -4,19 +4,25 @@ const prisma = new PrismaClient();
 
 async function main() {
   // const user = await prisma.user.create({data: {name: "Nipun"}});
-  await prisma.user.deleteMany();
-  const all = await prisma.user.create({
-    data: {
-      name: "Nipun",
-      email: "ss",
-      age: 12,
-      userPreference: { create: { emailUpdates: true } },
-    },
-    select: {
-      name: true,
-      userPreference: { select: { id: true } },
-    },
-  });
+  //   await prisma.user.deleteMany();
+  // const s = await prisma.user.create({
+  //   data: {
+  //     name: "Nipun",
+  //     email: "swsssss",
+  //     age: 14,
+  //     userPreference: { create: { emailUpdates: true } },
+  //   },
+  //   select: {
+  //     name: true,
+  //     userPreference: { select: { id: true } },
+  //   },
+  // });
+
+  const all = await prisma.user.findMany({
+    where: {  age: { gt: 10 } }, //gt, gte, lt, lte, in, notIn, equals, not, contains, startsWith, endsWith
+    //where:{OR:[{age: {gt: 10}},{name: {contains: "Nipun"}}]}, //AND, OR, NOT
+    orderBy: { age: "asc" },
+  }); //findUnique , findFirst, findMany
   console.log(all);
 }
 
