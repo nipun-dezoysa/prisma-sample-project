@@ -18,14 +18,19 @@ async function main() {
   //   },
   // });
 
-  await prisma.user.update({where:{email:""},data:{email:"test1@gmail.com"}});
+  await prisma.user.update({
+    where: { email: "" },
+    data: { email: "test1@gmail.com" },
+  });
 
   const all = await prisma.user.findMany({
-    where: {  age: { gt: 10 } }, //gt, gte, lt, lte, in, notIn, equals, not, contains, startsWith, endsWith
+    where: { age: { gt: 10 } }, //gt, gte, lt, lte, in, notIn, equals, not, contains, startsWith, endsWith
     //where:{OR:[{age: {gt: 10}},{name: {contains: "Nipun"}}]}, //AND, OR, NOT
     orderBy: { age: "asc" },
   }); //findUnique , findFirst, findMany
   console.log(all);
+
+  //prisma.user.delete({where:{id:1}}); deleteOne, deleteMany
 }
 
 main()
